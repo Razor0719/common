@@ -21,7 +21,6 @@ public class TreeNode<T> extends BaseBean {
         this.data = data;
         father = null;
         depth = 0;
-
     }
 
     /**
