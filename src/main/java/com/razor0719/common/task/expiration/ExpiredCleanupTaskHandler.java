@@ -1,4 +1,4 @@
-package com.razor0719.common.task.expiredcleanup;
+package com.razor0719.common.task.expiration;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 /**
+ * 过期清理任务处理
+ *
  * @author baoyl
  * @created 2019/3/26
  */

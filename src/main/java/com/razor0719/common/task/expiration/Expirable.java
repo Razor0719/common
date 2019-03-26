@@ -1,4 +1,4 @@
-package com.razor0719.common.task.expiredcleanup;
+package com.razor0719.common.task.expiration;
 
 import java.io.Serializable;
 import java.util.Date;

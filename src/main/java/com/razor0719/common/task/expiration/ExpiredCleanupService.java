@@ -1,10 +1,12 @@
-package com.razor0719.common.task.expiredcleanup;
+package com.razor0719.common.task.expiration;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
+ * 过期清理服务接口
+ *
  * @author baoyl
  * @created 2019/3/26
  */
