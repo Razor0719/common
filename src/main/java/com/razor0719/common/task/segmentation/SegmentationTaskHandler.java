@@ -12,6 +12,7 @@ import com.razor0719.common.domain.date.DateFormat;
 import com.razor0719.common.task.TaskHandler;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 分段任务处理
@@ -21,7 +22,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class SegmentationTaskHandler<S extends Segmentation> implements TaskHandler, InitializingBean {
+@Log4j2
+public class SegmentationTaskHandler<S extends Segmentable> implements TaskHandler, InitializingBean {
 
     private SegmentationService<S> segmentationService;
     private SegmentedLogService segmentedLogService;
@@ -29,7 +31,12 @@ public class SegmentationTaskHandler<S extends Segmentation> implements TaskHand
     private int period;
     /** 周期单位：y:年,M:月,d:天,H:时,m:分钟,s:秒,S:毫秒，默认为秒 */
     private DateFormat periodUnit = DateFormat.SECOND;
-    /** 分段延迟，默认为一个分段周期 */
+    /**
+     * 分段延迟
+     * 小于0：提前周期，默认-1
+     * 等于0：不延迟
+     * 大于零：推迟时间执行，单位s
+     */
     private int delay = -1;
 
     @Override
@@ -46,12 +53,12 @@ public class SegmentationTaskHandler<S extends Segmentation> implements TaskHand
         }
         S latestSegmentation = segmentationService.getLatest();
         while (segmentedLog.getEndTime().before(
-                delay < 0 ? addTimes(new Date(), -period, unit) : (delay == 0 ? new Date() : addTimes(new Date(), -delay, unit))
+                delay < 0 ? addTimes(new Date(), delay * period, unit) : (delay == 0 ? new Date() : addTimes(new Date(), delay, null))
         ) && (latestSegmentation == null || latestSegmentation.getSegmentedTime() == null
                 || !segmentedLog.getEndTime().after(latestSegmentation.getSegmentedTime()))) {
             List<S> segmentations = segmentationService.gets(segmentedLog.getStartTime(), segmentedLog.getEndTime());
             if (CollectionUtils.isEmpty(segmentations)) {
-                segmentationService.execute(segmentations);
+                segmentationService.handle(segmentations);
             }
             segmentedLogService.save(segmentedLog);
             //下个周期

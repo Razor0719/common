@@ -7,7 +7,7 @@ import java.util.List;
  * @author baoyl
  * @created 2019/3/21
  */
-public interface SegmentationService<S extends Segmentation> {
+public interface SegmentationService<S extends Segmentable> {
 
     /**
      * 分段任务名称
@@ -39,5 +39,5 @@ public interface SegmentationService<S extends Segmentation> {
      * 处理待处理记录
      * @param segmentations
      */
-    void execute(List<S> segmentations);
+    void handle(List<S> segmentations);
 }
