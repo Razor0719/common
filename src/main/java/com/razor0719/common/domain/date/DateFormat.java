@@ -1,6 +1,9 @@
 package com.razor0719.common.domain.date;
 
+import java.util.Date;
 import java.util.Map;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -71,4 +74,25 @@ public enum DateFormat implements Valueable<String> {
         return FILED_MAP.get(field);
     }
 
+    public static Date addTimes(Date date, int amount, DateFormat unit) {
+        if (unit == null) {
+            unit = DateFormat.SECOND;
+        }
+        switch (unit) {
+            case YEAR:
+                return DateUtils.addYears(date, amount);
+            case MONTH:
+                return DateUtils.addMonths(date, amount);
+            case DATE:
+                return DateUtils.addDays(date, amount);
+            case HOUR:
+                return DateUtils.addHours(date, amount);
+            case MINUTE:
+                return DateUtils.addMinutes(date, amount);
+            case SECOND:
+                return DateUtils.addSeconds(date, amount);
+            default:
+                return DateUtils.addMilliseconds(date, amount);
+        }
+    }
 }

@@ -53,7 +53,8 @@ public class SegmentationTaskHandler<S extends Segmentable> implements TaskHandl
         }
         S latestSegmentation = segmentationService.getLatest();
         while (segmentedLog.getEndTime().before(
-                delay < 0 ? addTimes(new Date(), delay * period, unit) : (delay == 0 ? new Date() : addTimes(new Date(), delay, null))
+                delay < 0 ? DateFormat.addTimes(new Date(), delay * period, unit)
+                        : (delay == 0 ? new Date() : DateFormat.addTimes(new Date(), delay, null))
         ) && (latestSegmentation == null || latestSegmentation.getSegmentedTime() == null
                 || !segmentedLog.getEndTime().after(latestSegmentation.getSegmentedTime()))) {
             List<S> segmentations = segmentationService.gets(segmentedLog.getStartTime(), segmentedLog.getEndTime());
@@ -85,29 +86,7 @@ public class SegmentationTaskHandler<S extends Segmentable> implements TaskHandl
     }
 
     private SegmentedLog buildSegmentedLog(Date startTime, int period, DateFormat unit) {
-        return segmentedLogService.build(segmentationService.getName(), startTime, addTimes(startTime, period, unit));
-    }
-
-    private Date addTimes(Date date, int amount, DateFormat unit) {
-        if (unit == null) {
-            unit = DateFormat.SECOND;
-        }
-        switch (unit) {
-            case YEAR:
-                return DateUtils.addYears(date, amount);
-            case MONTH:
-                return DateUtils.addMonths(date, amount);
-            case DATE:
-                return DateUtils.addDays(date, amount);
-            case HOUR:
-                return DateUtils.addHours(date, amount);
-            case MINUTE:
-                return DateUtils.addMinutes(date, amount);
-            case SECOND:
-                return DateUtils.addSeconds(date, amount);
-            default:
-                return DateUtils.addMilliseconds(date, amount);
-        }
+        return segmentedLogService.build(segmentationService.getName(), startTime, DateFormat.addTimes(startTime, period, unit));
     }
 
     @Override
