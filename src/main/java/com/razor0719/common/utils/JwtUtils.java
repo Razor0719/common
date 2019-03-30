@@ -28,6 +28,17 @@ public class JwtUtils {
 
     private static final String ISSUER = "com.razor0719";
 
+    /**
+     * 生成jwt
+     * @param audience
+     * @param expireTime
+     * @param notBeforeTime
+     * @param secret
+     * @param subject
+     * @param claims
+     * @param signatureAlgorithm
+     * @return String
+     */
     public static String createJwt(String audience,
                                    Date expireTime,
                                    Date notBeforeTime,
@@ -56,7 +67,7 @@ public class JwtUtils {
      * 验证jwt
      *
      * @param token
-     * @return
+     * @return Claims
      * @throws Exception
      */
     public static Claims verifyJwt(String token, String secret, SignatureAlgorithm signatureAlgorithm) {
