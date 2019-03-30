@@ -7,7 +7,7 @@ import java.util.List;
  * @author baoyl
  * @created 2019/3/21
  */
-public interface SegmentationService<S extends Segmentable> {
+public interface SegmentationService<S extends Segmented> {
 
     /**
      * 分段任务名称

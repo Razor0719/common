@@ -45,7 +45,9 @@ public abstract class BaseBean implements Bean{
     @SuppressWarnings("unchecked")
     public <T extends BaseBean> T deepClone() {
         try {
-            return (T) CloneUtils.recursiveClone(this);
+            //TODO
+//            return (T) CloneUtils.recursiveClone(this);
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

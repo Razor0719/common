@@ -10,7 +10,7 @@ import com.razor0719.common.domain.Bean;
  * @author baoyl
  * @created 2019/3/21
  */
-public interface Segmentable extends Bean {
+public interface Segmented extends Bean {
 
     /**
      * 分段标识时间

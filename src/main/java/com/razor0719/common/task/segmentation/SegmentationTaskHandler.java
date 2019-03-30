@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j2;
 @Getter
 @Setter
 @Log4j2
-public class SegmentationTaskHandler<S extends Segmentable> implements TaskHandler, InitializingBean {
+public class SegmentationTaskHandler<S extends Segmented> implements TaskHandler, InitializingBean {
 
     private SegmentationService<S> segmentationService;
     private SegmentedLogService segmentedLogService;
