@@ -2,9 +2,15 @@ package com.razor0719.common.algorithm.sort;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class SortExecutor<S extends Comparable> implements Sort<S> {
     @NonNull
