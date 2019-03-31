@@ -78,6 +78,11 @@ public class QuickSort<Q extends Comparable> implements Sort<Q> {
     }
 
     @Override
+    public String getName() {
+        return this.getClass().getName();
+    }
+
+    @Override
     public QuickSort<Q> sort() {
         this.size = values.size();
         quickly(0, size - 1);

@@ -1,23 +1,37 @@
 package com.razor0719.common.algorithm.sort;
 
+import java.util.List;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class SortExecutor<S extends Comparable> {
+public class SortExecutor<S extends Comparable> implements Sort<S> {
     @NonNull
     Sort<S> sort;
 
     public String getName() {
-        return sort.getClass().getName();
+        return sort.getName();
     }
 
+    @Override
+    public List<S> getValues() {
+        return sort.getValues();
+    }
+
+    @Override
     public Direction getDirection() {
         return sort.getDirection();
     }
 
+    @Override
     public int getSize() {
         return sort.getSize();
+    }
+
+    @Override
+    public Sort<S> sort() {
+        return sort.sort();
     }
 
     public void printOriginal() {

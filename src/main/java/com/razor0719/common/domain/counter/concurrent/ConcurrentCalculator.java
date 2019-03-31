@@ -37,8 +37,8 @@ public class ConcurrentCalculator<S extends ConcurrentSession> {
             for (S s : sessions) {
                 if (s != null && s.isAvalible()) {
                     this.sessions.add(s);
-                    concurrents.add(Concurrent.of(s.getStartTime(), 1));
-                    concurrents.add(Concurrent.of(s.getEndTime(), -1));
+                    concurrents.add(new Concurrent(s.getStartTime(), 1));
+                    concurrents.add(new Concurrent(s.getEndTime(), -1));
                     totalDuration += s.getDuration();
                     maxDuration = s.getDuration() > maxDuration ? s.getDuration() : maxDuration;
                     minDuration = s.getDuration() < minDuration ? s.getDuration() : minDuration;
@@ -111,11 +111,10 @@ public class ConcurrentCalculator<S extends ConcurrentSession> {
 
 
     @Getter
-    @RequiredArgsConstructor(staticName = "of")
+    @RequiredArgsConstructor()
     class Concurrent implements Comparable<Concurrent> {
         @NonNull
         private final Date time;
-        @NonNull
         private final int value;
         @Setter
         private int count;

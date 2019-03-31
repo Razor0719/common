@@ -36,6 +36,11 @@ public class HeapSort<H extends Comparable> implements Sort<H> {
     }
 
     @Override
+    public String getName() {
+        return this.getClass().getName();
+    }
+
+    @Override
     public HeapSort<H> sort() {
         this.size = values.size();
         for (int i = size / 2 - 1; i >= 0; i--) {
