@@ -3,18 +3,19 @@ package com.razor0719.common.algorithm.sort;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class HeapSort<H extends Comparable> implements Sort<H> {
 
-    @NonNull
     private List<H> values;
-    @NonNull
     private Direction direction;
     private int size;
+
+    public HeapSort(List<H> values, Direction direction) {
+        this.values = values;
+        this.direction = direction;
+        this.size = values.size();
+    }
 
     @SuppressWarnings("unchecked")
     private void heap(int start, int end) {
@@ -42,7 +43,6 @@ public class HeapSort<H extends Comparable> implements Sort<H> {
 
     @Override
     public HeapSort<H> sort() {
-        this.size = values.size();
         for (int i = size / 2 - 1; i >= 0; i--) {
             heap(i, size - 1);
         }
