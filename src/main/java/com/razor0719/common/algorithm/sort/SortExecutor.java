@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class SortExecutor<S extends Comparable> implements Sort<S> {
     @NonNull

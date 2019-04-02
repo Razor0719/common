@@ -5,18 +5,19 @@ import java.util.Random;
 
 import com.google.common.base.Objects;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class QuickSort<Q extends Comparable> implements Sort<Q> {
 
-    @NonNull
     private List<Q> values;
-    @NonNull
     private Direction direction;
     private int size;
+
+    public QuickSort(List<Q> values, Direction direction) {
+        this.values = values;
+        this.direction = direction;
+        this.size = values.size();
+    }
 
     @SuppressWarnings("unchecked")
     private void quickly(int start, int end) {
@@ -84,13 +85,11 @@ public class QuickSort<Q extends Comparable> implements Sort<Q> {
 
     @Override
     public QuickSort<Q> sort() {
-        this.size = values.size();
         quickly(0, size - 1);
         return this;
     }
 
     public QuickSort<Q> randomSort() {
-        this.size = values.size();
         randomQuickly(0, size - 1);
         return this;
     }
