@@ -11,8 +11,8 @@ public interface DistributedExecutor<T> {
     /**
      * 分布式执行
      * @return
-     * @throws DistributedException
+     * @throws Exception
      */
-    T execute() throws DistributedException;
+    T execute() throws Exception;
 
 }
