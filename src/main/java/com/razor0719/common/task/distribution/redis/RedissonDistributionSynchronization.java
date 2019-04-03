@@ -26,7 +26,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RedisDistributionSynchronization implements DistributedSynchronization, InitializingBean {
+public class RedissonDistributionSynchronization implements DistributedSynchronization, InitializingBean {
 
     private static final String DISTRIBUTION_LOCK_PREFIX = "redisDistributionLock:";
     private static final int DEFAULT_TIMEOUT = 30;
