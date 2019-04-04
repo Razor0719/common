@@ -10,7 +10,7 @@ public interface DistributedExecutor<T> {
 
     /**
      * 分布式执行
-     * @return
+     * @return T
      * @throws Exception
      */
     T execute() throws Exception;
