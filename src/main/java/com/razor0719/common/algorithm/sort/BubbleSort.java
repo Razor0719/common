@@ -16,6 +16,7 @@ public class BubbleSort<B extends Comparable> implements Sort<B> {
         this.size = values.size();
     }
 
+    @Override
     public String getName() {
         return this.getClass().getName();
     }

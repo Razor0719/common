@@ -15,6 +15,7 @@ public class SortExecutor<S extends Comparable> implements Sort<S> {
     @NonNull
     Sort<S> sort;
 
+    @Override
     public String getName() {
         return sort.getName();
     }

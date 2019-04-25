@@ -6,7 +6,13 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Direction {
+    /**
+     * 升序
+     */
     ASC(-1),
+    /**
+     * 降序
+     */
     DESC(1);
 
     private final int value;
