@@ -27,7 +27,7 @@ public class ExpiredCleanupTaskHandler<E extends Expirable<K>, K extends Seriali
     private ExpiredCleanupService<E, K> expiredCleanupService;
     /** 有效期，默认30天 */
     private int validityPeriod = 30;
-    /** 周期单位：y:年,M:月,d:天,H:时,m:分钟,s:秒,S:毫秒，默认为秒 */
+    /** 周期单位：y:年,M:月,d:天,H:时,m:分钟,s:秒,S:毫秒，默认为天 */
     private DateFormat periodUnit = DateFormat.DATE;
 
     @Override
